@@ -1,0 +1,18 @@
+default:  fxctmp9_tmp\nightvision_ps20.inc shaders\fxc\nightvision_ps20.vcs fxctmp9_tmp\PassThrough_ps20.inc shaders\fxc\PassThrough_ps20.vcs
+
+fxctmp9_tmp\nightvision_ps20.inc shaders\fxc\nightvision_ps20.vcs: nightvision_ps20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl   -source "..\.." nightvision_ps20.fxc-----nightvision_ps20
+	echo nightvision_ps20.fxc>> filestocopy.txt
+	echo common_fxc.h>> filestocopy.txt
+	echo common_hlsl_cpp_consts.h>> filestocopy.txt
+	echo common_pragmas.h>> filestocopy.txt
+	echo common_ps_fxc.h>> filestocopy.txt
+
+fxctmp9_tmp\PassThrough_ps20.inc shaders\fxc\PassThrough_ps20.vcs: PassThrough_ps20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl   -source "..\.." PassThrough_ps20.fxc-----PassThrough_ps20
+	echo PassThrough_ps20.fxc>> filestocopy.txt
+	echo common_fxc.h>> filestocopy.txt
+	echo common_hlsl_cpp_consts.h>> filestocopy.txt
+	echo common_pragmas.h>> filestocopy.txt
+	echo common_vs_fxc.h>> filestocopy.txt
+

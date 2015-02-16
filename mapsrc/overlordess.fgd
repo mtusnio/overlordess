@@ -1,0 +1,423 @@
+@include "halflife2.fgd"
+
+
+//================================================================
+// 							HL2MP classes
+//================================================================
+
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = info_player_rebel :
+	"This entity indicates the position and facing direction at which the player will spawn during a deathmatch map. Any number of "+
+	"info_player_rebel entities may be placed in a map."
+[
+]
+
+@FilterClass base(BaseFilter) size(-8 -8 -8, 8 8 8) = filter_activator_team :
+	"A filter that filters by the team of the activator."
+[
+	filterteam(choices) : "Filter Team Number" : 2 : 
+		"The team number to filter by.  If the filter mode is Allow, only entities whose "+
+		"team number matches the given team will pass the filter. If the filter mode is Disallow, "+
+		"all entities EXCEPT those whose team number matches the given team will pass the filter." =
+	[
+		2 : "Overlordess"
+		3 : "Rebels"
+	]
+]
+
+@PointClass base(prop_physics) studioprop() sphere(fademindist) sphere(fademaxdist) = prop_physics_respawnable :
+	"This class is the same as prop_physics, except it respawns after it breaks"
+[
+	RespawnTime(float) : "Respawn Time" : 60 : "Ammount in seconds this prop will respawn after it breaks."
+]
+
+//================================================================
+// 								Base Classes
+//================================================================
+
+@BaseClass base(Targetname, Origin, Parentname, Angles) = ModuleBase
+[
+	ModuleCost(integer) : "Module's cost" : 0 : "Activation cost of this module"
+	ActTime(float) : "Activation time" : 30 : "Number of seconds during which the module will stay activated. If 0 - never deactivates, if -1 - immediately deactivates"
+	CooldownTime(float) : "Cooldown time" : 0 : "Seconds after deactivation during which the module won't be available."
+	
+	ModuleName(string) : "Module's name" : "" : "Module's name displayed in the console"
+	ModuleDescription(string) : "Module's description" : "" : "Description that will appear on the popup"
+	GlowEntity(target_destination) : "Glow entity" : "" : "Entity which will have glow added to it when a player hovers over this module's button"
+	
+	input  InputActivate(void) : "Activate the module"
+	input  InputDeactivate(void) : "Deactivate the module"
+	
+	input  Enable(void) : "Allow activation of this module"
+	input  Disable(void) : "Disallow activation of this module" 
+	
+	output OnActivated(void) : "Called when the module is activated"
+	output OnDeactivated(void) : "Called when the module is deactivated"
+		
+	spawnflags(flags) =
+	[
+		1 : "Start disabled" : 0
+		1024 : "Do not draw" : 0
+	]
+
+]
+
+@BaseClass base(Targetname, Parentname, Angles, Origin) = TurretBase
+[
+	MaxYaw(float) : "Maximum yaw" : 180 : "Won't move if set to 0"
+	MaxPitch(float) : "Maximum pitch" : 60 : "Won't move if set to 0"
+	MoveSpeed(float) : "Move speed" : 5 : "The speed with which the turret will rotate (per 0.1s)"
+	DistanceFromCamera(float) : "Distance from origin" : 0 : "As origin serves the purpose of rotation axis, this lets you specify distance over local X axis from which targeting etc. will be carried out"
+	
+	spawnflags(flags) =
+	[
+		1024 : "Do not draw" : 0
+		512 : "Use world yaw axis" : 1
+		256 : "Use world pitch axis" : 0
+	]
+]
+
+@BaseClass = BarrelTurret
+[
+	BarrelName1(target_destination) : "First Barrel" : : "Name of the first barrel"
+	BarrelName2(target_destination) : "Second Barrel" : : "Name of the second barrel"
+	BarrelName3(target_destination) : "Third Barrel" : : "Name of the third barrel"
+	BarrelName4(target_destination) : "Fourth Barrel" : : "Name of the fourth barrel"
+	BarrelName5(target_destination) : "Fifth Barrel" : : "Name of the fifth barrel"
+	BarrelName6(target_destination) : "Sixth Barrel" : : "Name of the sixth barrel"
+	BarrelName7(target_destination) : "Seventh Barrel" : : "Name of the seventh barrel"
+	BarrelName8(target_destination) : "Eighth Barrel" : : "Name of the eighth barrel"
+]
+
+@BaseClass base(Targetname, Parentname, Angles) = CameraBase
+[
+	PreviousCamera(target_destination) : "Previous camera" : "" : "Overrides previous camera, does not modify the specified camera's next camera"
+	NextCamera(target_destination) : "Next camera" : "" : "Next camera to switch to. Will set this camera as its previous one"
+	UpperCamera(target_destination) : "Upper camera" : "" : "Will modify the specified camera's lower camera to this"
+	LowerCamera(target_destination) : "Lower camera" : "" : "Will modify the specified camera's upper camera to this"
+	
+	//OriginBrush(target_destination) : "Origin brush" : "" : "Brush the camera should be in the centre of"
+	
+
+	input ExitConsole(void) : "Exit the console."
+	input SwitchToThis(void) : "Switch to this camera"
+	input Disable(void) : "Disable this camera"
+	input Enable(void) : "Enable this camera"
+	input SetPreviousCamera(string) : "Sets previous camera if the next one is NOT specified"
+	input OverridePreviousCamera(string) : "Override previous camera with no safety checks"
+	input OverrideNextCamera(string) : "Override next camera with no safety checks"
+	
+	output OnEnter(void) : "Overlord has entered this camera"
+	output OnExit(void) : "Overlord has left this camera"	
+
+	
+	spawnflags(flags) =
+	[
+		1 : "Start disabled" : 0
+		128 : "Do not restart angles on exit" : 1
+		256 : "Static speed, does not use any smoothing" : 0
+	]
+]
+
+@BaseClass base(Targetname, Parentname, Angles, Origin) = BarrelBase
+[
+	AttackIntermission(float) : "Attack intermission" : "0.6" : "Intermission between each shot"
+	SentryDistance(float) : "Barrel distance" : 4096 : "Maximum range of the barrel"
+	SentryDamage(integer) : "Player damage" : 5 : "Damage inflicted by this barrel to any player"
+	PropDamage(integer) : "Objects damage" : 15 : "Damage inflicted to other objects"
+	FireSound(sound) : "Barrel sound" : "" : "Sound played each time this barrel fires"
+	
+	input Fire(void) : "Shoots one shot"
+]
+
+@BaseClass base(CameraBase, TurretBase) = CameraTurretBase
+[
+	spawnflags(flags) =
+	[
+		1 : "Start disabled" : 0
+		128 : "Do not restart angles" : 1
+		256 : "No speed changes" : 0
+		512 : "Use world yaw axis" : 1
+		1024 : "Use world pitch axis" : 0
+	]
+]
+
+@BaseClass base(Targetname, Origin, Angles) sphere(ReachDistance) sphere(SpawnDistance) = PathNode
+[
+	NextKey(target_destination) : "Next key" : : "Next path key"
+	AltKey(target_destination) : "Alt key" : : "Key for alternative route"
+	ReachDistance(float) : "Reach distance" : 128 : " "
+	SpawnDistance(float) : "Spawn distance" : 64 : " "
+	HintMessage(string) : "Hint message" : : " "
+	
+	output OnPlayerReached(void) : "Launched on node mark"
+	output OnFirstPlayerReached(void) : "Launched on first node mark"
+	
+	input SetNextNode(target_destination) : "Sets a next node"
+	input SetAsReached(void) : "Set as reached"
+	
+	spawnflags(flags) =
+	[
+		1 : "Spawn node" : 0
+		2 : "Can only be marked by input" : 0
+		4 : "Can always be reached" : 0
+		8 : "Can still spawn node" : 0
+		16 : "Cannot blink to this" : 0
+	]
+] 
+
+//========================================================================================================
+// 												Entities
+//========================================================================================================
+
+@PointClass base(PathNode) studio("models/node/node.mdl") = overlord_pathnode
+[
+	
+]
+
+@PointClass base(PathNode) studio("models/node/node.mdl") = overlord_pathstart
+[
+
+]
+
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = info_player_overlord :
+	"This entity indicates the position and facing direction at which the overlord will spawn. Any number of "+
+	"info_player_overlord entities may be placed in a map."
+[
+]
+
+@SolidClass base(Targetname) = func_overconsole : "Overlord's console"
+[
+	Camera(target_destination) : "Camera Name" : : "The name of the camera that the console will switch the Overlord to"
+	
+	spawnflags(flags) =
+	[
+		1 : "Overwrite console's camera on exit" : 0
+	]
+
+	input Lock(void) : "Locks the console"
+	input Unlock(void) : "Unlocks the console"
+]
+
+
+@PointClass base(CameraTurretBase) studioprop("models/editor/camera.mdl") = point_overcamera : "Overlord's camera"
+[	
+	//Description(string) : "Description" : "" : ""
+
+	output OnUsePressed(void) : "Use key was pressed."
+	output OnForwardPressed(void) : "Forward key was pressed."
+	output OnBackPressed(void) : "Back key was pressed."
+	output OnLeftPressed(void) : "Left key was pressed."
+	output OnRightPressed(void) : "Right key was pressed."
+	output OnJumpPressed(void) : "Jump key was pressed."
+	output OnReloadPressed(void) : "Reload key was pressed."
+	output OnDuckPressed(void) : "Duck key was pressed."	
+]
+    
+@PointClass base(Targetname, Angles) size(-8 -8 -8, 8 8 8) color(0 255 0) = overlord_minimap :
+	"Entity for the interactive minimap"
+[
+	Scale(integer) : "Scale" : 20 : "The value by which the player's position will be scaled. The higher it is, the smaller the minimap should be."
+	Update(float) : "Update time" : 5 : "How often the map should update player's position. WARNING: Use no less than 1 second, lower values may cause unwanted behavior."
+	SphereSize(integer) : "Sphere's size" : 20 : "Size of the particle used to indicate player's position"
+	
+	input Enable(void) : "Enable this minimap"
+	input Disable(void) : "Disable this minimap"
+	
+	spawnflags(flags) =
+	[
+		2 : "Start off" : 0
+	]
+
+]
+
+@PointClass base(BarrelTurret, CameraTurretBase) studioprop("models/editor/camera.mdl") = point_oversentry : "Overlord-controlled sentry"
+[
+	input ExitConsole(void) : "Exit the console."
+	input SwitchToThis(void) : "Switch to this camera"
+	
+	AmmoBought(integer) : "Ammo resupply" : 20 : "Quantity of ammo resupplied after buying"
+	InitialAmmo(integer) : "Initial ammo" : 150 : "Initial ammo"
+	AmmoCost(integer) : "Ammo cost" : 20 : "Cost of the resupplied ammo"
+	AmmoUsage(integer) : "Ammo usage" : 1 : "Ammo used for one shot from one barrel."
+	
+	//output OnEnter(void) : "Overlord has entered this camera"
+	//output OnExit(void) : "Overlord has left this camera"	
+	output OnUsePressed(void) : "Use key was pressed."
+	output OnJumpPressed(void) : "Jump key was pressed."
+	output OnReloadPressed(void) : "Reload key was pressed."
+	//output OnDuckPressed(void) : "Duck key was pressed."
+	
+	spawnflags(Flags) =
+	[
+		2 : "Concentrate barrels on crosshair" : 0	
+	]
+]
+
+@SolidClass base(BarrelBase)  = func_overbarrel : "Barrel"
+[
+
+]
+
+@SolidClass base(BarrelBase)  = func_overrocketbarrel : "Rocket barrel"
+[
+	RocketSpeed(float) : "Rocket's speed" : 400 : "Speed of fired rocket"
+]
+
+@PointClass base(ModuleBase, TurretBase, BarrelTurret) studioprop("models/editor/camera.mdl") sphere(Radius) = point_overturret : "Turret"
+[
+	Radius(float) : "Search radius" : 1536 : "Distance in which player will be looked for and fired at."
+	UpdateTime(float) : "Update interval" : "0.05" : "Interval between position and target updates (think function time)"
+	TrackingDelay(float) : "Tracking delay" : "0.0" : "Delay between the point when a player is sighted and actually fired upon."	
+	
+	spawnflags(flags) =
+	[
+		2 : "Concentrate barrels on target" : 0
+		4 : "Always shoot" : 0
+	]
+
+]
+
+@PointClass base(ModuleBase) studio("models/props_combine/breenglobe.mdl") = logic_overmodule : "Logic module"
+[
+
+]
+
+@PointClass base(Targetname, Parentname, Origin, Angles, ModuleBase) studio("models/editor/axis_helper_thick.mdl") sphere(FlashRadius) = point_overflash : "Flash module"
+[
+	FlashOnSound(sound) : "Flash on sound" : "" : "Sound played when the flash is turned on"
+	FlashOffSound(sound) : "Flash off sound" : "" : "Sound played when the flash is turned off"
+	
+	FlashRadius(float) : "Flash radius" : 3072 : "Effective distance of the flash"
+]
+
+@PointClass base(Parentname, Targetname, Angles, RenderFxChoices, Studiomodel) studioprop() sphere(playerdistance) = over_doorconsole : "Door console" 
+[
+	//model(studio) : "World Model" : "models/props_lab/eyescanner.mdl"
+	
+	HackTime(float) : "Maximum hack time" : 20 : "How long it should take to hack this console."
+	MinimumHackTime(float) : "Minimum hack time" : 5 : "Minimum hacking time for the console (when all players are around). Half of this time when being hacked by a hacker."
+	
+	playerdistance(integer) : "Player distance" : 328 : "Distance the players need to be in to contribute to lowered hacking time"
+	PercentageAlive(integer) : "Minimum percentage needed" : 0 : "Minimum percentage of alive rebel players that needs to stand next to the console to hack it"
+	
+	AreaName01(target_destination) : "Override area number 1" : "" : "Overrides the automatic selection of the first area. This is the area players will spawn in."
+	AreaName02(target_destination) : "Override area number 2" : "" : "Overrides the automatic selection of the second area."
+	
+	HackingString(string) : "Hacking string" : "Time: %i" : " "
+	HackedString(string) : "Hacked string" : "Hacked" : " "
+	
+	input InputLock(void) : "Lock this console"
+	input InputUnlock(void) : "Unlock this console"
+	
+	output OnUnlocked(void) : "Console hacked"
+	output OnLocked(void) : "Console locked"
+
+	spawnflags(flags) =
+	[
+		8 : "Do not warn" : 0
+		16 : "Count only players in line of sight" : 0
+		32 : "Do not show hint" : 0
+	]
+]
+
+//@SolidClass base(Parentname, Origin, Targetname, ModuleBase) = func_overgas : "Gas trap"
+//[
+
+//]
+
+@PointClass base(CameraBase) studioprop("models/editor/camera.mdl") = point_overmovcam : "Overlord's moving camera"
+[
+	ForwardAxis(angle) : "Forward/back axis" : : "Axis on which will move the camera after pressing forward/back"
+	SideAxis(angle) : "Left/right axis" : : "Axis on which will move the camera after pressing left/right"
+	
+	input ExitConsole(void) : "Exit the console."
+	input SwitchToThis(void) : "Switch to this camera"
+	
+	output OnUsePressed(void) : "Use key was pressed."
+	output OnJumpPressed(void) : "Jump key was pressed."
+	output OnReloadPressed(void) : "Reload key was pressed."
+	output OnDuckPressed(void) : "Duck key was pressed."
+]
+
+@PointClass base(Origin, Targetname, Parentname) = over_hintentity : "Hint entity"
+[
+	HintDisplayed(string) : "Hint displayed" : "" : "Hint displayed when near this entity."
+	
+	HintTeam(choices) : "Team" : 0 : "Which team should be able to see the hint." =
+	[
+		0 : "Both"
+		2 : "Overlordess"
+		3 : "Rebels"
+	]
+	
+	input EnableHint(void) : "Enable this hint"
+	input DisableHint(void) : "Disable this hint"
+	input ToggleHint(void) : "Toggle this hint"
+]
+
+@PointClass base(Origin, Targetname, Parentname, Angles) studioprop("models/items/ammocrate_ar2.mdl") = item_overammo : "Ammo crate"
+[	
+	spawnflags(flags) =
+	[
+		2 : "Do not restore ammo"				   : 0
+	]
+]
+
+@PointClass base(Origin, Targetname, Parentname, Angles) studioprop("models/props_combine/health_charger001.mdl") = item_overhealth : "Health crate"
+[	
+	health(integer) : "Charger health" : 250 : "Total health in the charger"
+	medkit(integer) : "Medkit ammo" : 250 : "Total medkit ammo to be given"
+]
+
+
+@PointClass base(Targetname) iconsprite("editor/logic_auto.vmt") = overlord_data_proxy : "Overlord Data Proxy"
+[
+	SecondsPerHealth(float) : "Seconds per one health" : 1 : "Seconds it takes to gain one health"
+	StartHealth(integer) : "Starting health" : 100 : "Health the Overlordess has on map start"
+	HealthCap(integer) : "Health cap" : 700 : "Maximum health that the Overlordess can have. Use 0 for unlimited"
+	MaxTraps(integer) : "Max traps" : 8 : "Maximum number of traps the Ov can place. Up to 64"
+	SpawnsMultiplier(float) : "Spawns multiplier" : "3.5" : "Every player brings that many spawns into the game"
+	MaxPower(integer) : "Maximum power" : 400 : "Maximum amount of power that can be acquired"
+	StartingPower(integer) : "Starting power" : 120 : "Power the Ov has at the start of the map"
+	
+	input  StartHealthCount(void) : "Start health count"
+	input  StopHealthCount(void) : "Stop health count" 
+	input  AddPower(integer) : "Add power"
+	input  RemovePower(integer) : "Remove power"
+	input  EnableInstantSpawn(void) : "Enable instant spawn"
+	input  DisableInstantSpawn(void) : "Disable instant spawn"
+	input  RespawnAllPlayers(void) : "Respawns all players"
+	input  EnableWarMode(void) : "Starts boss fight. Launches insta spawns and stops health counter"
+	
+	spawnflags(flags) =
+	[
+		1 : "Start health counting on round start" : 1
+	]
+	
+]
+@SolidClass base(Targetname, Origin, Angles, Parentname) = func_over_particlebrush : "Particle brush"
+[
+	ParticleSystem(string) : "Particle system's name" : "" : "Name of the particle system to be emitted"
+	MinimumTime(float) : "Minimum time" : "0.0" : "Minimum time between particle emissions"
+	MaximumTime(float) : "Maximum time" : "1.0" : "Maximum time between particle emissions"	
+	
+	
+	spawnflags(flags) =
+	[
+		2 : "Particles emitted client-side only" : 1
+	]
+]
+
+@PointClass base(prop_physics) studioprop() sphere(fademindist) sphere(fademaxdist) = prop_physics_buildable :
+	"This class is the same as prop_physics, except the runtime collisions use a more bouncy method that avoids " +
+	"the prediction errors normal physics objects get. It also allows traps to be built on them."
+[
+	physicsmode(choices) : "Physics Mode" : 0 =
+	[
+		0: "Auto Detect"
+		1: "Solid, Server-side"
+		2: "Non-Solid, Server-side"
+		3: "Non-Solid, Client-side"
+	]
+]
+

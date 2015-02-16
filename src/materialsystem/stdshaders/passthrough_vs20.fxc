@@ -1,0 +1,23 @@
+#include "common_vs_fxc.h"
+
+struct VS_INPUT
+{
+   float4 iPosition : POSITION;
+   float2 iTexCoord : TEXCOORD0;
+};
+
+struct VS_OUTPUT
+{
+   float4 oPosition : POSITION;
+   float2 oTexCoord : TEXCOORD0;
+};
+
+VS_OUTPUT main( const VS_INPUT v )
+{
+	VS_OUTPUT o = ( VS_OUTPUT )0;
+	
+	o.oPosition=v.iPosition;
+	o.oTexCoord=v.iTexCoord;
+	
+	return o;
+}
