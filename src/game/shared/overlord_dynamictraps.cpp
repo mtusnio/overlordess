@@ -1575,7 +1575,7 @@ ConVar eo_laser_damage("eo_laser_damage", "1.0", FCVAR_REPLICATED | FCVAR_CHEAT)
 //ConVar eo_laser_minimum_distance("eo_laser_minimum_distance", "24.0", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_laser_degree_distance_yaw("eo_laser_degree_distance_yaw", "6.0", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_laser_degree_distance_pitch("eo_laser_degree_distance_pitch", "30.0", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_laser_health("eo_laser_health", "30", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_laser_health("eo_laser_health", "25", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_laser_range("eo_laser_range", "2160", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_laser_sound_duration("eo_laser_sound_duration", "0.15", FCVAR_REPLICATED | FCVAR_CHEAT);
 
@@ -1685,7 +1685,7 @@ BEGIN_PREDICTION_DATA(COverlordLaser)
 END_PREDICTION_DATA()
 #endif
 
-LINK_TRAP_TO_ENTITY(trap_laser, COverlordLaser, Laser, 45, 70, "A laser trap which hurts anyone who crosses its beam", 
+LINK_TRAP_TO_ENTITY(trap_laser, COverlordLaser, Laser, 45, 60, "A laser trap which hurts anyone who crosses its beam", 
 					"Offense");
 
 COverlordLaser::COverlordLaser()
@@ -1988,7 +1988,7 @@ ConVar eo_mine_buzz_volume("eo_mine_buzz_volume", "0.075", FCVAR_REPLICATED | FC
 ConVar eo_mine_damage("eo_mine_damage", "90", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_mine_magnitude("eo_mine_magnitude", "160", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_mine_health("eo_mine_health", "30", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_mine_delay("eo_mine_delay", "0.40", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_mine_delay("eo_mine_delay", "0.45", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_mine_points("eo_mine_points", "3", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 #define MINE_HEALTH eo_mine_health.GetInt()
@@ -2262,9 +2262,9 @@ Vector COverlordMine::GetMineDirection() const
 
 ConVar eo_fan_distance("eo_fan_distance", "1112.0", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_fan_activation_range("eo_fan_activation_range", "1130", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_fan_physics_factor("eo_fan_physics_factor", "51.0", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_fan_player_factor("eo_fan_player_factor", "0.50", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_fan_health("eo_fan_health", "120", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_fan_physics_factor("eo_fan_physics_factor", "50.0", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_fan_player_factor("eo_fan_player_factor", "0.45", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_fan_health("eo_fan_health", "70", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 #define FAN_VECTOR Vector(38, 38, 38)
 #define FAN_SOUND "d3_citadel.podarm_rotate"
@@ -2629,24 +2629,24 @@ Vector COverlordFan::GetEmitterPosition()
 #define FLAMER_PARTICLE_UNDERWATER "FlamerUnderwater"
 
 
-ConVar eo_flamer_health("eo_flamer_health", "180", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_flamer_health("eo_flamer_health", "140", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_flamer_distance("eo_flamer_distance", "520.0", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_flamer_counter("eo_flamer_counter", "4", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_flamer_counter("eo_flamer_counter", "3", FCVAR_REPLICATED | FCVAR_CHEAT);
 //ConVar eo_flamer_damage("eo_flamer_damage", "40", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_flamer_damage("eo_flamer_damage", "8", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_flamer_damage("eo_flamer_damage", "7", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_flamer_initial_dormant_range("eo_flamer_initial_dormant_range", "530", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_flamer_damage_interval("eo_flamer_damage_interval", "0.285", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_flamer_damage_interval("eo_flamer_damage_interval", "0.305", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_flamer_interval("eo_flamer_interval", "2.25", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_flamer_interval_min("eo_flamer_interval_min", "0.0", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_flamer_interval_max("eo_flamer_interval_max", "2.25", FCVAR_REPLICATED | FCVAR_CHEAT);
 
-ConVar eo_flamer_afterburn_length("eo_flamer_afterburn_length", "3.0", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_flamer_afterburn_length("eo_flamer_afterburn_length", "2.0", FCVAR_REPLICATED | FCVAR_CHEAT);
 //ConVar eo_flamer_afterburn_damage("eo_flamer_afterburn_damage", "2", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 //ConVar eo_flamer_slowdown("eo_flamer_slowdown", "165", FCVAR_REPLICATED | FCVAR_CHEAT);
 //ConVar eo_flamer_slowdown_duration("eo_flamer_slowdown_duration", "2.25", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_flamer_slowdown("eo_flamer_slowdown", "110", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_flamer_slowdown_duration("eo_flamer_slowdown_duration", "0.4", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_flamer_slowdown("eo_flamer_slowdown", "90", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_flamer_slowdown_duration("eo_flamer_slowdown_duration", "0.3", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 ConVar eo_flamer_force("eo_flamer_force", "1800", FCVAR_REPLICATED | FCVAR_CHEAT);
 
@@ -2738,7 +2738,7 @@ BEGIN_PREDICTION_DATA(COverlordFlamer)
 END_PREDICTION_DATA()
 #endif
 
-LINK_TRAP_TO_ENTITY(trap_flamer, COverlordFlamer, Flamer, 50, 80,
+LINK_TRAP_TO_ENTITY(trap_flamer, COverlordFlamer, Flamer, 50, 60,
 					"A flamethrowing trap which burst a 10 meters long and 2.0 meter wide flame damaging everyone in its range.",
 					"Offense");
 
@@ -3301,14 +3301,14 @@ void COverlordTrap::DoGlowBlink(Color clr, float flBlinkTime /*= 0.1f*/)
 #define PARALYSER_SOUND "traps.paralyser_paralyse"
 
 ConVar eo_paralyser_distance("eo_paralyser_distance", "780.0", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_paralyser_time("eo_paralyser_time", "2.25", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_paralyser_slowdown("eo_paralyser_slowdown", "100", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_paralyser_slowdown_time("eo_paralyser_slowdown_time", "3.0", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_paralyser_time("eo_paralyser_time", "2.05", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_paralyser_slowdown("eo_paralyser_slowdown", "70", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_paralyser_slowdown_time("eo_paralyser_slowdown_time", "2.0", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_paralyser_degree_distance_yaw("eo_paralyser_degree_distance_yaw", "3", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_paralyser_degree_distance_pitch("eo_paralyser_degree_distance_pitch", "25", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_paralyser_activation_range("eo_paralyser_activation_range", "800", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_paralyser_damage("eo_paralyser_damage", "0", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_paralyser_health("eo_paralyser_health", "50", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_paralyser_health("eo_paralyser_health", "30", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 #define PARALYSER_RANGE eo_paralyser_distance.GetFloat()
 #define PARALYSER_VECTOR Vector(2, 2, 2)
@@ -3378,7 +3378,7 @@ BEGIN_PREDICTION_DATA(COverlordParalyser)
 END_PREDICTION_DATA()
 #endif
 
-LINK_TRAP_TO_ENTITY(trap_paralyser, COverlordParalyser, Paralyser, 35, 70, 
+LINK_TRAP_TO_ENTITY(trap_paralyser, COverlordParalyser, Paralyser, 35, 55, 
 					"Trap which holds anybody who walks into its beam and afterwards slows down the player for a couple of seconds.",
 					"Utility");
 
@@ -3692,21 +3692,21 @@ void COverlordParalyser::UpdateBeam()
 #define PIGEON_GLOW "sprites/glow04_noz.vmt"
 #define PIGEON_PARTICLE "PigeonEngine"
 
-ConVar eo_pigeon_speed("eo_pigeon_speed", "1500",  FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_pigeon_speed("eo_pigeon_speed", "1400",  FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_pigeon_delay("eo_pigeon_delay", "0.25", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_pigeon_health("eo_pigeon_health", "22", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_pigeon_health("eo_pigeon_health", "25", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_pigeon_activation_range("eo_pigeon_activation_range", "9124", FCVAR_REPLICATED | FCVAR_CHEAT);
 
-ConVar eo_pigeon_minimum_distance("eo_pigeon_minimum_distance", "240", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_pigeon_minimum_distance("eo_pigeon_minimum_distance", "300", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 ConVar eo_pigeon_minimum_damage("eo_pigeon_minimum_damage", "20", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_pigeon_damage("eo_pigeon_damage", "30", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_pigeon_damage("eo_pigeon_damage", "35", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 ConVar eo_pigeon_maximum_damage_distance("eo_pigeon_maximum_damage_distance", "1024", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_pigeon_additional_damage_distance("eo_pigeon_additional_damage_distance", "2048", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_pigeon_additional_damage("eo_pigeon_additional_damage", "15", FCVAR_REPLICATED | FCVAR_CHEAT);
 
-ConVar eo_pigeon_acceleration_time("eo_pigeon_acceleration_time", "1.25", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_pigeon_acceleration_time("eo_pigeon_acceleration_time", "1.15", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 ConVar eo_pigeon_points("eo_pigeon_points", "10", FCVAR_REPLICATED | FCVAR_CHEAT);
 
@@ -3809,7 +3809,7 @@ BEGIN_PREDICTION_DATA(COverlordPigeon)
 END_PREDICTION_DATA()
 #endif
 
-LINK_TRAP_TO_ENTITY(trap_pigeon, COverlordPigeon, Pigeon, 60, 70, "A flying exploding trap which homes at the nearest rebel and carries out a suicidal charge after a short delay.",
+LINK_TRAP_TO_ENTITY(trap_pigeon, COverlordPigeon, Pigeon, 60, 65, "A flying exploding trap which homes at the nearest rebel and carries out a suicidal charge after a short delay.",
 					"Offense");
 
 #ifndef CLIENT_DLL
@@ -4202,9 +4202,9 @@ void COverlordPigeon::Explode()
 
 ConVar eo_bomber_search_distance("eo_bomber_search_distance", "2096", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_bomber_activation_range("eo_bomber_activation_range", "120", FCVAR_CHEAT | FCVAR_REPLICATED);
-ConVar eo_bomber_explosion_time("eo_bomber_explosion_time", "0.40", FCVAR_CHEAT | FCVAR_REPLICATED);
+ConVar eo_bomber_explosion_time("eo_bomber_explosion_time", "0.45", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_bomber_damage("eo_bomber_damage", "90", FCVAR_CHEAT | FCVAR_REPLICATED);
-ConVar eo_bomber_switch_distance("eo_bomber_switch_distance", "75", FCVAR_CHEAT | FCVAR_REPLICATED);
+ConVar eo_bomber_switch_distance("eo_bomber_switch_distance", "85", FCVAR_CHEAT | FCVAR_REPLICATED);
 
 //ConVar eo_bomber_health("eo_bomber_health", "60", FCVAR_CHEAT | FCVAR_REPLICATED);
 
@@ -4713,13 +4713,13 @@ CBaseEntity * COverlordBomber::FindNearestPhysicsEntity(bool * bSwap) const
 #define COverlordSticky C_OverlordSticky
 #endif
 
-ConVar eo_sticky_distance("eo_sticky_distance", "140.0", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_sticky_distance("eo_sticky_distance", "145.0", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_sticky_initial_dormant_range("eo_sticky_initial_dormant_range", "165", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_sticky_explosion_time("eo_sticky_explosion_time", "4.0", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_sticky_explosion_time("eo_sticky_explosion_time", "4.25", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_sticky_damage("eo_sticky_damage", "80", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_sticky_health("eo_sticky_health", "20", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_sticky_health("eo_sticky_health", "15", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_sticky_points("eo_sticky_points", "30", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_sticky_slowdown("eo_sticky_slowdown", "110", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_sticky_slowdown("eo_sticky_slowdown", "100", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 #define STICKY_DAMAGE eo_sticky_damage.GetFloat()
 #define STICKY_DISTANCE eo_sticky_distance.GetFloat()
@@ -5270,8 +5270,8 @@ Vector COverlordUnstealther::GetEmitterPosition()
 
 #ifndef CLIENT_DLL
 
-ConVar eo_airstrike_round_magnitude("eo_airstrike_round_magnitude", "90", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_airstrike_round_radius("eo_airstrike_round_radius", "140", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_airstrike_round_magnitude("eo_traps_airstrike_round_magnitude", "90", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_airstrike_round_radius("eo_traps_airstrike_round_radius", "140", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 #define PROJECTILE_MODEL "models/dynamic_traps/shell/shell.mdl"
 
@@ -5398,8 +5398,8 @@ void COverlordProjectile::Touch( CBaseEntity *pOther )
 	if(pOther && !pOther->IsSolid() )
 		return;
 
-	ExplosionCreate(GetAbsOrigin(), GetAbsAngles(), m_Trap, eo_airstrike_round_magnitude.GetFloat(), 
-		eo_airstrike_round_radius.GetFloat(), true, eo_airstrike_round_magnitude.GetFloat());
+	ExplosionCreate(GetAbsOrigin(), GetAbsAngles(), m_Trap, eo_traps_airstrike_round_magnitude.GetFloat(), 
+		eo_traps_airstrike_round_radius.GetFloat(), true, eo_traps_airstrike_round_magnitude.GetFloat());
 	
 	UTIL_Remove(this);
 }
@@ -5409,22 +5409,22 @@ void COverlordProjectile::Touch( CBaseEntity *pOther )
 #define COverlordAirstrike C_OverlordAirstrike
 #endif
 
-ConVar eo_airstrike_radius("eo_airstrike_radius", "625", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_airstrike_dormant_range("eo_airstrike_dormant_range", "520", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_airstrike_radius("eo_traps_airstrike_radius", "525", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_airstrike_dormant_range("eo_traps_airstrike_dormant_range", "550", FCVAR_REPLICATED | FCVAR_CHEAT);
 
-ConVar eo_airstrike_rounds("eo_airstrike_rounds", "7", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_airstrike_rounds("eo_traps_airstrike_rounds", "6", FCVAR_REPLICATED | FCVAR_CHEAT);
 
-ConVar eo_airstrike_interval("eo_airstrike_interval", "2.25", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_airstrike_rounds_per_player("eo_airstrike_rounds_per_player", "2", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_airstrike_per_player_delay("eo_airstrike_per_player_delay", "1.65", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_airstrike_wave_delay("eo_airstrike_wave_delay", "0.95", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_airstrike_interval("eo_traps_airstrike_interval", "2.75", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_airstrike_rounds_per_player("eo_traps_airstrike_rounds_per_player", "2", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_airstrike_per_player_delay("eo_traps_airstrike_per_player_delay", "2.0", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_airstrike_wave_delay("eo_traps_airstrike_wave_delay", "1.05", FCVAR_REPLICATED | FCVAR_CHEAT);
 
-ConVar eo_airstrike_health("eo_airstrike_health", "65", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_airstrike_health("eo_traps_airstrike_health", "15", FCVAR_REPLICATED | FCVAR_CHEAT);
 
-ConVar eo_airstrike_minimum_height("eo_airstrike_minimum_height", "380", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_airstrike_minimum_height("eo_traps_airstrike_minimum_height", "400", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 #define AIRSTRIKE_SOUND "NPC_SScanner.FlyLoop"
-#define AIRSTRIKE_RADIUS eo_airstrike_radius.GetFloat()
+#define AIRSTRIKE_RADIUS eo_traps_airstrike_radius.GetFloat()
 //#define AIRSTRIKE_ROUND_MODEL "models/props_c17/oildrum001_explosive.mdl"
 
 #ifndef CLIENT_DLL
@@ -5476,7 +5476,7 @@ public:
 		return WorldSpaceCenter() + rUp * 16;
 	}
 
-	virtual float GetInitialDormantRange() const { return eo_airstrike_dormant_range.GetFloat(); };
+	virtual float GetInitialDormantRange() const { return eo_traps_airstrike_dormant_range.GetFloat(); };
 	virtual float GetNormalMultiplier() const { return 0.0f; };
 	virtual bool  UseLOSForInitialDormant() const { return false; };
 	virtual bool  Use2DForInitialDormant() const { return true; };
@@ -5536,7 +5536,7 @@ BEGIN_PREDICTION_DATA(COverlordAirstrike)
 END_PREDICTION_DATA()
 #endif
 
-LINK_TRAP_TO_ENTITY(trap_airstrike, COverlordAirstrike, Artillery, 70, 60, 
+LINK_TRAP_TO_ENTITY(trap_airstrike, COverlordAirstrike, Artillery, 80, 60, 
 					"Can only be built outdoors; calls periodical artillery strikes", "Defense");
 
 COverlordAirstrike::COverlordAirstrike()
@@ -5570,7 +5570,7 @@ error_t COverlordAirstrike::CanBuild()
 		return CreateError("Needs to have the sky directly above it");
 	}
 
-	if((tr.endpos - tr.startpos).Length() < eo_airstrike_minimum_height.GetFloat())
+	if((tr.endpos - tr.startpos).Length() < eo_traps_airstrike_minimum_height.GetFloat())
 	{
 		return CreateError("The radar is too high");
 	}
@@ -5599,7 +5599,7 @@ error_t COverlordAirstrike::CanBuild()
 
 		float distance = (pos - vAir).Length();
 
-		if(distance <= (eo_airstrike_radius.GetFloat() * 2))
+		if(distance <= (eo_traps_airstrike_radius.GetFloat() * 2))
 		{
 			return CreateError("Overlaps with another airstrike");
 		}
@@ -5632,7 +5632,7 @@ void COverlordAirstrike::SetTrapDormant(bool bDormant)
 
 void COverlordAirstrike::InitializeTrap()
 {
-	SetDestroyable(eo_airstrike_health.GetInt());
+	SetDestroyable(eo_traps_airstrike_health.GetInt());
 	SetExplodable(eo_traps_explosion_magnitude.GetFloat(), eo_traps_explosion_radius.GetFloat(), 
 		eo_traps_explosion_force.GetFloat(), true);
 	ResetSequence( LookupSequence( "Idle" ) );
@@ -5660,7 +5660,7 @@ void COverlordAirstrike::RunTrap()
 				continue;
 			}
 
-			if((record.m_Rounds >= eo_airstrike_rounds_per_player.GetInt()))
+			if((record.m_Rounds >= eo_traps_airstrike_rounds_per_player.GetInt()))
 			{
 				if((record.m_flNextRestart > gpGlobals->curtime))
 				{
@@ -5676,23 +5676,23 @@ void COverlordAirstrike::RunTrap()
 			DropRound(record.m_Player);
 			record.m_Rounds++;
 
-			if(record.m_Rounds >= eo_airstrike_rounds_per_player.GetInt())
+			if(record.m_Rounds >= eo_traps_airstrike_rounds_per_player.GetInt())
 			{
-				record.m_flNextRestart = gpGlobals->curtime + eo_airstrike_per_player_delay.GetFloat();
+				record.m_flNextRestart = gpGlobals->curtime + eo_traps_airstrike_per_player_delay.GetFloat();
 			}
 			
 			m_nRound++;
 		}
 
-		if(m_nRound >= eo_airstrike_rounds.GetInt())
+		if(m_nRound >= eo_traps_airstrike_rounds.GetInt())
 		{
-			m_flNextFall = gpGlobals->curtime + eo_airstrike_interval.GetFloat();
+			m_flNextFall = gpGlobals->curtime + eo_traps_airstrike_interval.GetFloat();
 			m_nRound = 0;
 			m_Players.Purge();
 		}
 		else
 		{
-			m_flNextFall = gpGlobals->curtime + eo_airstrike_wave_delay.GetFloat();
+			m_flNextFall = gpGlobals->curtime + eo_traps_airstrike_wave_delay.GetFloat();
 		}
 	}
 
@@ -5733,7 +5733,7 @@ void COverlordAirstrike::ScanForPlayers()
 		sAirstrikePlayer record(pPlayer);
 
 		float dist = (pPlayer->WorldSpaceCenter() - GetEmitterPosition()).Length2D();
-		if(dist > eo_airstrike_radius.GetFloat())
+		if(dist > eo_traps_airstrike_radius.GetFloat())
 		{
 			if(m_Players.HasElement(record))
 			{
@@ -5795,8 +5795,8 @@ bool COverlordAirstrike::GetSkyboxVector(Vector pos, Vector & vec)
 #define COverlordInvisibler C_OverlordInvisibler
 #endif
 
-ConVar eo_invisibler_distance("eo_invisibler_distance", "185", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_invisibler_own_alpha("eo_invisibler_own_alpha", "125", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_invisibler_distance("eo_invisibler_distance", "195", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_invisibler_own_alpha("eo_invisibler_own_alpha", "105", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_invisibler_alpha("eo_invisibler_alpha", "35", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_invisibler_initial_dormant_range("eo_invisibler_initial_dormant_range", "1536", FCVAR_REPLICATED | FCVAR_CHEAT);
 
@@ -6082,11 +6082,11 @@ int COverlordInvisibler::GetAlpha()
 
 ConVar eo_mist_distance("eo_mist_distance", "210.0", FCVAR_REPLICATED | FCVAR_CHEAT);
 //ConVar eo_mist_alpha("eo_mist_alpha", "40", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_mist_blind("eo_mist_blind", "200", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_mist_blind("eo_mist_blind", "170", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_mist_initial_dormant_range("eo_mist_initial_dormant_range", "840", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_mist_particle_delay("eo_mist_particle_delay", "1.15", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_mist_particle_delay("eo_mist_particle_delay", "1.05", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_mist_close_time("eo_mist_close_time", "1.0", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_mist_health("eo_mist_health", "250", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_mist_health("eo_mist_health", "160", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 #define MIST_DISTANCE eo_mist_distance.GetFloat()
 #define MIST_PARTICLE "MistEffect"
@@ -6400,11 +6400,11 @@ void COverlordMist::Blind(CBasePlayer * pPlayer)
 
 ConVar eo_devourer_range("eo_devourer_range", "640.0", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_devourer_range_grab("eo_devourer_range_grab", "42", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_devourer_damage("eo_devourer_damage", "27", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_devourer_damage("eo_devourer_damage", "20", FCVAR_REPLICATED | FCVAR_CHEAT);
 //ConVar eo_devourer_speed("eo_devourer_speed", "1000", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_devourer_health("eo_devourer_health", "75", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_devourer_health("eo_devourer_health", "70", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_devourer_dormant_range("eo_devourer_dormant_range", "700", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_devourer_retract_delay("eo_devourer_retract_delay", "0.4", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_devourer_retract_delay("eo_devourer_retract_delay", "0.75", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_devourer_release_points("eo_devourer_release_points", "30", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 #define DEVOURER_RANGE eo_devourer_range.GetFloat()
@@ -7177,7 +7177,7 @@ void COverlordDevourer::FireGameEvent(IGameEvent * event)
 #endif
 
 ConVar eo_zapper_health("eo_zapper_health", "100", FCVAR_CHEAT | FCVAR_REPLICATED);
-ConVar eo_zapper_damage("eo_zapper_damage", "16.0", FCVAR_CHEAT | FCVAR_REPLICATED);
+ConVar eo_zapper_damage("eo_zapper_damage", "13.0", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_zapper_range("eo_zapper_range", "260", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_zapper_interval("eo_zapper_interval", "1.05", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_zapper_fulldamage_range("eo_zapper_fulldamage_range", "0.5", FCVAR_CHEAT | FCVAR_REPLICATED);
@@ -7186,8 +7186,8 @@ ConVar eo_zapper_initial_dormant_range("eo_zapper_initial_dormant_range", "380",
 ConVar eo_zapper_beams_per_player("eo_zapper_beams_per_player", "4", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_zapper_view_kick_min("eo_zapper_view_kick_min", "-28", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_zapper_view_kick_max("eo_zapper_view_kick_max", "28", FCVAR_CHEAT | FCVAR_REPLICATED);
-ConVar eo_zapper_slowdown("eo_zapper_slowdown", "300", FCVAR_CHEAT | FCVAR_REPLICATED);
-ConVar eo_zapper_slowdown_length("eo_zapper_slowdown_length", "0.24", FCVAR_CHEAT | FCVAR_REPLICATED);
+ConVar eo_zapper_slowdown("eo_zapper_slowdown", "200", FCVAR_CHEAT | FCVAR_REPLICATED);
+ConVar eo_zapper_slowdown_length("eo_zapper_slowdown_length", "0.20", FCVAR_CHEAT | FCVAR_REPLICATED);
 
 #define ZAPPER_RANGE eo_zapper_range.GetFloat()
 #define ZAPPER_DAMAGE eo_zapper_damage.GetFloat()
@@ -7468,22 +7468,22 @@ void COverlordZapper::FireGameEvent(IGameEvent * event)
 #define COverlordHomer C_OverlordHomer
 #endif
 
-ConVar eo_homer_health("eo_homer_health", "60", FCVAR_CHEAT | FCVAR_REPLICATED);
-ConVar eo_homer_warmup_time("eo_homer_warmup_time", "1.95", FCVAR_CHEAT | FCVAR_REPLICATED);
+ConVar eo_homer_health("eo_homer_health", "40", FCVAR_CHEAT | FCVAR_REPLICATED);
+ConVar eo_homer_warmup_time("eo_homer_warmup_time", "3.0", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_homer_initial_dormant_range("eo_homer_initial_dormant_range", "3096", FCVAR_CHEAT | FCVAR_REPLICATED);
-ConVar eo_homer_warmup_speed("eo_homer_warmup_speed", "50", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_homer_explosion_range("eo_homer_explosion_range", "28", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_homer_move_speed("eo_homer_move_speed", "650", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_homer_warmup_speed("eo_homer_warmup_speed", "40", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_homer_explosion_range("eo_homer_explosion_range", "24", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_homer_move_speed("eo_homer_move_speed", "625", FCVAR_REPLICATED | FCVAR_CHEAT);
 
-ConVar eo_homer_lift_speed("eo_homer_lift_speed", "220", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_homer_lift_speed("eo_homer_lift_speed", "240", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_homer_lift_distance("eo_homer_lift_distance", "52", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 ConVar eo_homer_sound_interval_min("eo_homer_sound_interval_min", "3.25", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_homer_sound_interval_max("eo_homer_sound_interval_max", "7.5", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_homer_damage("eo_homer_damage", "350", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_homer_magnitude("eo_homer_magnitude", "512", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_homer_damage("eo_homer_damage", "320", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_homer_magnitude("eo_homer_magnitude", "412", FCVAR_REPLICATED | FCVAR_CHEAT);
 
-ConVar eo_homer_points("eo_homer_points", "25", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_homer_points("eo_homer_points", "50", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 #define WARMUP_DURATION eo_homer_warmup_time.GetFloat()
 #define WARMUP_SPEED eo_homer_warmup_speed.GetFloat()
@@ -7624,7 +7624,7 @@ END_DATADESC()
 // "Trivia! Category: Politics! Who was a nameless simpleton who was found dead, 
 //  obliterated by an unidentified explosion? Time out!"
 
-LINK_TRAP_TO_ENTITY(trap_homer, COverlordHomer, Homer, 80, 80, "Converted's poetic solution to all your rebel problems: 10 kilograms of explosives slowly beeping it's way towards them. Because there's no kill, like overkill!",
+LINK_TRAP_TO_ENTITY(trap_homer, COverlordHomer, Homer, 95, 80, "Converted's poetic solution to all your rebel problems: 10 kilograms of explosives slowly beeping it's way towards them. Because there's no kill, like overkill!",
 					"Offense");
 
 COverlordHomer::COverlordHomer()
@@ -8119,10 +8119,10 @@ bool COverlordHomer::CanMoveUp(float dist) const
 ConVar eo_link_radius("eo_link_radius", "110", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_link_damage("eo_link_damage", "6", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_link_damage_delay("eo_link_damage_delay", "0.5", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_link_break_range("eo_link_break_range", "1096", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_link_break_time("eo_link_break_time", "2.25", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_link_break_range("eo_link_break_range", "396", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_link_break_time("eo_link_break_time", "1.25", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_link_initial_dormant_range("eo_link_initial_dormant_range", "120", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_link_lifetime("eo_link_lieftime", "30", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_link_lifetime("eo_link_lifetime", "20", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 ConVar eo_link_max_points("eo_link_max_points", "30", FCVAR_REPLICATED | FCVAR_CHEAT);
 
@@ -8593,7 +8593,7 @@ bool COverlordLink::AreTargetsInLOS() const
 ConVar eo_addicter_distance("eo_addicter_distance", "230.0", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_addicter_initial_dormant_range("eo_addicter_initial_dormant_range", "235.0", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_addicter_speed("eo_addicter_speed", "720", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_addicter_health("eo_addicter_health", "50", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_addicter_health("eo_addicter_health", "40", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_addicter_points("eo_addicter_points", "10", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 #define ADDICTER_RADIUS eo_addicter_distance.GetFloat()
@@ -9287,7 +9287,7 @@ Vector COverlordAddicter::GetTargetAttach() const
 	if(!m_Target)
 		return vec3_origin;
 
-	Vector relPos(-11, 0, 60);
+	Vector relPos(-18, 0, 60);
 	Vector globPos;
 
 	m_Target->EntityToWorldSpace(relPos, &globPos);
