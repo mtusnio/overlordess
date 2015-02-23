@@ -1,0 +1,5 @@
+*.opensdf
+*.sdf
+ipch/
+*Release_hl2mp/
+*Debug_hl2mp/
