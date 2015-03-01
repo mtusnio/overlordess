@@ -90,18 +90,22 @@ void COverlordProgressPanel::ApplySchemeSettings(vgui::IScheme * pScheme)
 		ScreenHeight()/2 + GetTall() + 
 		vgui::scheme()->GetProportionalScaledValueEx(GetScheme(), SHIFT_Y));
 
-	if(!m_ProgressBar)
+	if(m_ProgressBar)
 	{
-		int marginX = vgui::scheme()->GetProportionalScaledValueEx(GetScheme(), MARGIN_X);
-		int marginY = vgui::scheme()->GetProportionalScaledValueEx(GetScheme(), MARGIN_Y);
+		delete m_ProgressBar;
+		m_ProgressBar = nullptr;
+	}
 
-		m_ProgressBar = new vgui::COverlordProgressBar(this, "", vgui::scheme()->GetProportionalScaledValueEx(GetScheme(), OUTLINE_DIST));
-		m_ProgressBar->SetEmptyColor(Color(0, 0, 0, 120));
-		m_ProgressBar->SetPos(marginX,
-			marginY);
-		m_ProgressBar->SetWide(GetWide() - 2 * marginX);
-		m_ProgressBar->SetTall(GetTall() - 2 * marginY);
-	}						  
+	int marginX = vgui::scheme()->GetProportionalScaledValueEx(GetScheme(), MARGIN_X);
+	int marginY = vgui::scheme()->GetProportionalScaledValueEx(GetScheme(), MARGIN_Y);
+
+	m_ProgressBar = new vgui::COverlordProgressBar(this, "", vgui::scheme()->GetProportionalScaledValueEx(GetScheme(), OUTLINE_DIST));
+	m_ProgressBar->SetEmptyColor(Color(0, 0, 0, 120));
+	m_ProgressBar->SetPos(marginX,
+		marginY);
+	m_ProgressBar->SetWide(GetWide() - 2 * marginX);
+	m_ProgressBar->SetTall(GetTall() - 2 * marginY);
+						  
 }
 
 void COverlordProgressPanel::SetProgress(float percent)

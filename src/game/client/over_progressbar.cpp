@@ -75,6 +75,8 @@ void COverlordProgressBar::ApplySettings(KeyValues *inResourceData)
 	{
 		SetType(CHud::HUDPB_VERTICAL);
 	}
+	else
+		Warning("Progress bar received wrong bar type");
 
 }
 void COverlordProgressBar::Paint()

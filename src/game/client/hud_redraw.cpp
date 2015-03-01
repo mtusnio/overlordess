@@ -154,25 +154,25 @@ void CHud::DrawProgressBarWithOutline(int xpos, int ypos, int outlinedist,
 {
 	percent = clamp(percent, 0.0f, 1.0f);
 
+	int barOfs = (float)width * percent;
 	if(type == HUDPB_HORIZONTAL )
 	{
-		int barOfs = (float)(width - 2 * outlinedist) * percent;
-		int startX = xpos + outlinedist;
-		int startY = ypos + outlinedist;
+		int startX = xpos;
+		int startY = ypos;
 		int fullEndX = startX + barOfs;
-		int fullEndY = startY + height - 2*outlinedist;
-		int emptyEndX = startX + width - 2*outlinedist;
-		int emptyEndY = startY;	
+		int fullEndY = startY + height;
+		int emptyEndX = startX + width;
+		int emptyEndY = fullEndY;	
 			
+
 		surface()->DrawSetColor( full );
 		surface()->DrawFilledRect( startX, startY, fullEndX, fullEndY);
 
 		surface()->DrawSetColor( empty );
-		surface()->DrawFilledRect( fullEndX, emptyEndY, emptyEndX, fullEndY );
+		surface()->DrawFilledRect( fullEndX, startY, emptyEndX, emptyEndY );
 	}
 	else if(type == HUDPB_VERTICAL)
 	{
-		int barOfs = (float)(height - 2 * outlinedist) * percent;
 		int startX = xpos + outlinedist;
 		int startY = ypos + height - outlinedist;
 		int fullEndX = startX + width - 2*outlinedist;
@@ -188,7 +188,6 @@ void CHud::DrawProgressBarWithOutline(int xpos, int ypos, int outlinedist,
 	}
 	else if(type == HUDPB_HORIZONTAL_INV)
 	{
-		int barOfs = (float)(width - 2 * outlinedist) * percent;
 		int startX = xpos + width - 2*outlinedist;
 		int startY = ypos + outlinedist;
 		int fullEndX = startX - barOfs;
