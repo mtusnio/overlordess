@@ -38,8 +38,8 @@ ConVar eo_spawn_multiplier("eo_spawn_multiplier", "-1", FCVAR_REPLICATED | FCVAR
 ConVar eo_static_spawns("eo_static_spawns", "0", FCVAR_REPLICATED | FCVAR_NOTIFY, "If set to non-zero it overrides number of spawns to this amount at the beginning of the round"); 
 
 //ConVar eo_default_power("eo_default_power", "120", FCVAR_REPLICATED | FCVAR_NOTIFY);
-ConVar eo_power_per_rebel("eo_power_per_rebel", "3.0", FCVAR_REPLICATED | FCVAR_NOTIFY, "Power given by every rebel.");
-ConVar eo_base_power_gain("eo_base_power_gain", "0", FCVAR_REPLICATED | FCVAR_NOTIFY);
+ConVar eo_power_per_rebel("eo_power_per_rebel", "2.0", FCVAR_REPLICATED | FCVAR_NOTIFY, "Power given by every rebel.");
+ConVar eo_base_power_gain("eo_base_power_gain", "1", FCVAR_REPLICATED | FCVAR_NOTIFY);
 ConVar eo_smartpowergain("eo_smartpowergain", "1", FCVAR_REPLICATED | FCVAR_NOTIFY);
 ConVar eo_powergaintime("eo_powergaintime", "2.00", FCVAR_REPLICATED | FCVAR_NOTIFY);
 ConVar eo_smartpowerdelay("eo_smartpowerdelay", "2.0", FCVAR_REPLICATED | FCVAR_NOTIFY);

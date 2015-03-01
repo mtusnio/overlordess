@@ -72,7 +72,7 @@ CLIENTEFFECT_REGISTER_END()
 
 
 ConVar eo_trapsneverdecay("eo_trapsneverdecay", "0", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_trapsdistance("eo_trapsdistance", "150", FCVAR_REPLICATED | FCVAR_CHEAT, "Minimum distance between a trap and a player when building");
+ConVar eo_trapsdistance("eo_trapsdistance", "225", FCVAR_REPLICATED | FCVAR_CHEAT, "Minimum distance between a trap and a player when building");
 ConVar eo_traps_initial_dormant_range("eo_traps_initial_dormant_range", "1024.0", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_traps_defaulthealth("eo_traps_defaulthealth", "140", FCVAR_REPLICATED | FCVAR_CHEAT);
 
@@ -86,15 +86,15 @@ ConVar eo_traps_explosion_force("eo_traps_explosion_force", "90", FCVAR_REPLICAT
 ConVar eo_traps_remark_time("eo_traps_remark_time", "21", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 
-ConVar eo_traps_discharge_delay_min("eo_traps_discharge_delay_min", "0.2", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_traps_discharge_delay_max("eo_traps_discharge_delay_max", "0.85", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_traps_discharge_min("eo_traps_discharge_min", "5", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_traps_discharge_max("eo_traps_discharge_max", "35", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_traps_zap_damage_multiplier("eo_traps_zap_damage_multiplier", "40.0", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_traps_zap_slowdown("eo_traps_zap_slowdown", "65", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_traps_zap_slowdown_length("eo_traps_zap_slowdown_length", "1.25", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_discharge_delay_min("eo_traps_discharge_delay_min", "0.6", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_discharge_delay_max("eo_traps_discharge_delay_max", "1.35", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_discharge_min("eo_traps_discharge_min", "10", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_discharge_max("eo_traps_discharge_max", "28", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_zap_damage_multiplier("eo_traps_zap_damage_multiplier", "30.0", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_zap_slowdown("eo_traps_zap_slowdown", "45", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_zap_slowdown_length("eo_traps_zap_slowdown_length", "1.10", FCVAR_REPLICATED | FCVAR_CHEAT);
 
-ConVar eo_traps_defense_chance("eo_traps_defense_chance", "99", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_traps_defense_chance("eo_traps_defense_chance", "80", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_traps_explode("eo_traps_explode", "1", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_traps_restore_duration_multiplier("eo_traps_restore_duration_multiplier", "0.5", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_traps_restore_health_multiplier("eo_traps_restore_health_multiplier", "1.0", FCVAR_REPLICATED | FCVAR_CHEAT);
@@ -978,9 +978,7 @@ void COverlordTrap::Event_Killed(const CTakeDamageInfo &info)
 
 			int chance = eo_traps_defense_chance.GetInt();
 
-			// Remember: 0 always fails
-			if((rand <= chance) && 
-				(chance != 0))
+			if(rand <= chance)
 				CreateTrapDefense(GetEmitterPosition(), GetAbsAngles(), this);
 		}
 		else if(m_bUseDefenses)
@@ -7481,7 +7479,7 @@ ConVar eo_homer_lift_distance("eo_homer_lift_distance", "52", FCVAR_REPLICATED |
 ConVar eo_homer_sound_interval_min("eo_homer_sound_interval_min", "3.25", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_homer_sound_interval_max("eo_homer_sound_interval_max", "7.5", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar eo_homer_damage("eo_homer_damage", "320", FCVAR_REPLICATED | FCVAR_CHEAT);
-ConVar eo_homer_magnitude("eo_homer_magnitude", "412", FCVAR_REPLICATED | FCVAR_CHEAT);
+ConVar eo_homer_magnitude("eo_homer_magnitude", "200", FCVAR_REPLICATED | FCVAR_CHEAT);
 
 ConVar eo_homer_points("eo_homer_points", "50", FCVAR_REPLICATED | FCVAR_CHEAT);
 
