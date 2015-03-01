@@ -7181,7 +7181,7 @@ ConVar eo_zapper_interval("eo_zapper_interval", "1.05", FCVAR_CHEAT | FCVAR_REPL
 ConVar eo_zapper_fulldamage_range("eo_zapper_fulldamage_range", "0.5", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_zapper_loop_volume("eo_zapper_loop_volume", "0.32", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_zapper_initial_dormant_range("eo_zapper_initial_dormant_range", "380", FCVAR_CHEAT | FCVAR_REPLICATED);
-ConVar eo_zapper_beams_per_player("eo_zapper_beams_per_player", "4", FCVAR_CHEAT | FCVAR_REPLICATED);
+ConVar eo_zapper_beams_per_player("eo_zapper_beams_per_player", "8", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_zapper_view_kick_min("eo_zapper_view_kick_min", "-28", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_zapper_view_kick_max("eo_zapper_view_kick_max", "28", FCVAR_CHEAT | FCVAR_REPLICATED);
 ConVar eo_zapper_slowdown("eo_zapper_slowdown", "200", FCVAR_CHEAT | FCVAR_REPLICATED);
@@ -7227,6 +7227,8 @@ public:
 	{
 		return AlignToTop(normal);
 	}
+
+	virtual Vector GetEmitterPosition() { return WorldSpaceCenter(); }
 #ifndef CLIENT_DLL
 	virtual void RunTrap();
 #else
